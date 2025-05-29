@@ -1,0 +1,30 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type TransactionType {
+  id: ID!
+  name: String!
+  description: String
+  transactions: [Transaction!]! @goField(forceResolver: true)
+}
+
+input TransactionTypeInput {
+  name: String!
+  description: String
+}
+
+# Mutations to create, update, and delete entities
+extend type Query {
+  transactionTypes: [TransactionType!]!
+}
+
+extend type Mutation {
+  createTransactionType(input: TransactionTypeInput!): TransactionType!
+  updateTransactionType(id: ID!, input: TransactionTypeInput!): TransactionType!
+  deleteTransactionType(id: ID!): Boolean!
+}

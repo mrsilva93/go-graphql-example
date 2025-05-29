@@ -1,0 +1,22 @@
+type User {
+  id: ID!
+  name: String!
+  cnpj: String!
+  transactions: [Transaction!]!
+}
+
+input UserInput {
+  name: String!
+  cnpj: String!
+}
+
+# Mutations to create, update, and delete entities
+extend type Query {
+  users: [User!]!
+}
+
+extend type Mutation {
+  createUser(input: UserInput!): User!
+  updateUser(id: ID!, input: UserInput!): User!
+  deleteUser(id: ID!): Boolean!
+}
