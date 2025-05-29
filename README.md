@@ -80,6 +80,73 @@ mutation {
 }
 ```
 
+```graphql
+  transactions {
+    id
+    value
+    date
+    transactionType{
+      id
+      name
+    }
+    user {
+      id
+      name
+      cnpj
+    }
+  }
+}
+
+
+mutation createTransaction {
+  createTransaction(input:{transactionTypeId: "3a76c424-e992-403c-98e5-fbf4011c450a", userId: "f0dfbe9b-9d36-4bbe-95d3-d73e7575e6ae",value: 100, date: "2025-05-28",
+  }){
+    id
+    value
+    date
+    user{
+      id
+      name
+    }
+    transactionType{
+      name
+      description
+    }
+  }
+}
+
+
+query getTransactionTYpes{
+  transactionTypes{
+    id
+    name
+    description
+    transactions{
+      id
+      value
+      date
+    }
+  }
+}
+
+query naruto{
+  transactions(filter: {  maxValue:100, userId:1, limit:2 }) {
+    id
+    value
+    user {
+      name
+    }
+  }
+}
+
+
+query getUsers {
+  users {
+  name 
+  cnpj
+}
+```
+
 ## Contribuição
 Sinta-se à vontade para abrir issues ou enviar pull requests.
 
